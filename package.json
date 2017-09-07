@@ -1,5 +1,5 @@
 {
-    "name": "YOUR PROJECT NAME",
+    "name": "bog_app_react",
     "engines": {
       "node": "8.2.1"
     },
@@ -8,4 +8,4 @@
       "deploy": "cp -a client/build/. public/",
       "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
     }
-  }
+}

@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AllCreatures from "./components/AllCreatures";
+import CreatureItem from "./components/CreatureItem";
+import NewCreature from './components/NewCreature';
+import EditCreature from './components/EditCreature';
+import GlobalNav from './components/GlobalNav';
+
 import './App.css';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <Router>
+          <div>
+            <GlobalNav/>
+            <Route exact path='/' component={AllCreatures} />
+            <Route exact path='/new' component={NewCreature} />
+            <Route exact path='/creatures/:id' component={CreatureItem} />
+            <Route exact path='/creatures/:id/edit' component={EditCreature} />
+          </div>
+        </Router>
     );
   }
 }

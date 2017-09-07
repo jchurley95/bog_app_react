@@ -17,15 +17,13 @@ class Api::CreaturesController < ApplicationController
 
     def update
         @creature = Creature.find params[:id]
-        @creature = Creature.update!(creature_params)
+        @creature.update(creature_params)
 
-        redirect_to api_creature_path(@creature)
     end
 
     def destroy
         @creature = Creature.find params[:id]
-
-        redirect_to api_creatures_path
+        @creature.destroy
     end
 
     private
