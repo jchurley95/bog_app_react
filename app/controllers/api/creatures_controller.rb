@@ -12,20 +12,20 @@ class Api::CreaturesController < ApplicationController
     def create
         @creature = Creature.create!(creature_params)
 
-        redirect_to creature_path(@creature)
+        redirect_to api_creature_path(@creature)
     end
 
     def update
         @creature = Creature.find params[:id]
         @creature = Creature.update!(creature_params)
 
-        redirect_to creature_path(@creature)
+        redirect_to api_creature_path(@creature)
     end
 
     def destroy
         @creature = Creature.find params[:id]
 
-        redirect_to creatures_path
+        redirect_to api_creatures_path
     end
 
     private

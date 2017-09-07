@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root "creatures#index"
+  root to: "creatures#index"
 
-  
-  resources :creatures
+  namespace :api do
+    resources :creatures
+  end
 end
