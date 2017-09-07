@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 const Nav = styled.div`
@@ -21,18 +22,63 @@ const Nav = styled.div`
     }
 `;
 
-
-
 class GlobalNav extends Component {
-    render() {
-        return (
-            <Nav>
-                <div><h2>Swamped!</h2></div>
-                    <div><h2><Link to="/">Home</Link></h2></div>
-                    <div><h2><Link to="/new">New Creature</Link></h2></div>
-            </Nav>
-        );
+  constructor() {
+    super();
+    this.state = {
+      user: {},
+      loggedIn: false
+    };
+  }
+
+  componentWillMount() {
+    this._isLoggedIn();
+  }
+  componentWillReceiveProps() {
+    this._isLoggedIn();
+  }
+
+  _isLoggedIn = async () => {
+    const response = await axios.get("/auth/validate_token");
+    this.setState({
+      user: response.data.data,
+      loggedIn: response.data.success
+    });
+  };
+  
+  _logOut = async () => {
+    console.log("CLICK");
+    const response = await axios.delete("/auth/sign_out");
+    //Forces refresh of browser
+    window.location.reload();
+  };
+
+  render() {
+    if (this.state.loggedIn) {
+      return (
+        <Nav>
+          <Link to="/">
+            <h1>Tunr</h1>
+          </Link>
+          <div>
+            <span>Signed In As: <Link to={`/user/{user.id}`}> {this.state.user.email}</Link></span>
+            <a href="#" onClick={this._logOut}> Log Out </a>
+          </div>
+        </Nav>
+      );
     }
+    return (
+      <Nav>
+        <Link to="/">
+            <h1>Creatures</h1>
+        </Link>
+        <div>
+            <Link to="/new">New Creature</Link>
+            <Link to="/signUp">Sign Up</Link>
+        </div>
+      </Nav>
+    );
+  }
 }
 
 export default GlobalNav;
