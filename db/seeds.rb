@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Creature.destroy_all
+
+Creature.create({name: "Dan", description: "Dan slappa da bass mahn"});
+Creature.create({name: "Danny", description: "Danny slappa da bad programmers"});
