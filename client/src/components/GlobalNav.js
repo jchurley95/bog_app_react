@@ -61,6 +61,7 @@ class GlobalNav extends Component {
             <h1>Creatures</h1>
           </Link>
           <div>
+            <Link to="/new">New Creature</Link>
             <span>Signed In As: <Link to={`/user/{user.id}`}> {this.state.user.email}</Link></span>
             <a href="#" onClick={this._logOut}> Log Out </a>
           </div>
