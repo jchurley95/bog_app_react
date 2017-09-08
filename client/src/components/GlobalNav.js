@@ -58,7 +58,7 @@ class GlobalNav extends Component {
       return (
         <Nav>
           <Link to="/">
-            <h1>Tunr</h1>
+            <h1>Creatures</h1>
           </Link>
           <div>
             <span>Signed In As: <Link to={`/user/{user.id}`}> {this.state.user.email}</Link></span>
@@ -74,7 +74,8 @@ class GlobalNav extends Component {
         </Link>
         <div>
             <Link to="/new">New Creature</Link>
-            <Link to="/signUp">Sign Up</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/signin">Log In</Link>
         </div>
       </Nav>
     );

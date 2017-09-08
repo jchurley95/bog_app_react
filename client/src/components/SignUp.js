@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { setAxiosHeaders } from '../util';
 
-class SignUpLogIn extends Component {
+class SignUp extends Component {
  constructor(){
    super();
    this.state = {
@@ -15,17 +15,16 @@ class SignUpLogIn extends Component {
  }
 
  _signUp = async (e) => {
-    e.preventDefault();
-    const payload = {
-      email: this.state.email,
-      password: this.state.password,
-      password_confirmation: this.state.password_confirmation
-    }
-    const response = await axios.post('/auth', payload)
-    
-    console.log(response);
-    this.setState({redirect: true})
-  }
+   e.preventDefault();
+   const payload = {
+     email: this.state.email,
+     password: this.state.password,
+     password_confirmation: this.state.password_confirmation
+   }
+   const response = await axios.post('/auth', payload);
+   setAxiosHeaders(response.headers);
+   this.setState({redirect: true})
+ }
 
  _signIn = (e) => {
    e.preventDefault();
@@ -59,11 +58,11 @@ class SignUpLogIn extends Component {
          </div>
          
          <button>Sign Up</button>
-         <button onClick={this._signIn}>Log In</button>
+         <Link to="/signin">Sign In</Link>
        </form>
      </div>
    );
  }
 }
 
-export default SignUpLogIn;
+export default SignUp;
