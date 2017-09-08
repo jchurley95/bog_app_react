@@ -74,7 +74,6 @@ class GlobalNav extends Component {
             <h1>Creatures</h1>
         </Link>
         <div>
-            <Link to="/new">New Creature</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/signin">Log In</Link>
         </div>
